@@ -2,6 +2,7 @@ import React from "react";
 import { usePostClockInTime } from "../hooks/usePostClockInTime";
 import { ClockInTime } from "../types";
 import "../AttendanceTable.css";
+import { Button } from "@chakra-ui/react";
 function ClockInComponent() {
   const { mutate: postClockInTime } = usePostClockInTime();
 
@@ -20,7 +21,9 @@ function ClockInComponent() {
 
   return (
     <div className="clock-in-container">
-      <button onClick={handlePostClockInTime}>出勤</button>
+      <Button colorScheme="blue" onClick={handlePostClockInTime}>
+        出勤
+      </Button>
     </div>
   );
 }

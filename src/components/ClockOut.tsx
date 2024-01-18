@@ -2,6 +2,7 @@ import React from "react";
 import { usePostClockOutTime } from "../hooks/usePostClockOutTime";
 import { ClockOutTime } from "../types";
 import "../AttendanceTable.css";
+import { Button } from "@chakra-ui/react";
 function ClockOutComponent() {
   const { mutate: postClockOutTime } = usePostClockOutTime();
 
@@ -20,7 +21,14 @@ function ClockOutComponent() {
 
   return (
     <div>
-      <button onClick={handlePostClockOutTime}>退勤</button>
+      <Button
+        colorScheme="green"
+        mr={4}
+        ml={4}
+        onClick={handlePostClockOutTime}
+      >
+        退勤
+      </Button>
     </div>
   );
 }

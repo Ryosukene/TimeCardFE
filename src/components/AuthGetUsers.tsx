@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useGetUsers } from "../hooks/useGetUsers";
 import "../Modal.css";
+import { Button } from "@chakra-ui/react";
 
 // Update the User type to ensure the id is renderable
 type User = {
@@ -19,7 +20,9 @@ const AuthGetUsers = () => {
 
   return (
     <div>
-      <button onClick={() => setIsModalOpen(true)}>社員リスト</button>
+      <Button colorScheme="green" onClick={() => setIsModalOpen(true)}>
+        社員リスト
+      </Button>
 
       {isModalOpen && (
         <div className="modal">

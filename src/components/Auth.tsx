@@ -23,21 +23,28 @@ export const Auth = () => {
         password: pw,
       });
     } else {
-      const registerAction = isAuthUser ? authRegisterMutation : loginMutation;
-      await registerAction
-        .mutateAsync({
+      if (isAuthUser) {
+        await authRegisterMutation.mutateAsync({
           email: email,
           password: pw,
-        })
-        .then(() =>
-          loginMutation.mutate({
+        });
+      } else {
+        await loginMutation
+          .mutateAsync({
             email: email,
             password: pw,
           })
-        );
+          .then(() =>
+            loginMutation.mutate({
+              email: email,
+              password: pw,
+            })
+          );
+      }
     }
   };
-
+  console.log("isAuthUser", isAuthUser);
+  console.log("isLogin", isLogin);
   return (
     <div className="flex justify-center items-center min-h-screen text-gray-600 font-mono">
       <div className="w-full max-w-md mx-auto">
@@ -93,7 +100,15 @@ export const Auth = () => {
                 disabled={!email || !pw}
                 type="submit"
               >
-                {isAuthUser && !isLogin ? "登録" : "ログイン"}
+                {isAuthUser
+                  ? isLogin
+                    ? "ログイン"
+                    : "登録"
+                  : isLogin
+                  ? "ログイン"
+                  : "ログイン"}
+
+                {/* {isAuthUser && !isLogin ? "登録" : "ログイン"} */}
               </button>
             </div>
           </form>

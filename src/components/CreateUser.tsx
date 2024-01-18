@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { User } from "../types";
 import { usePostCreateUser } from "../hooks/usePostCreateUser";
 import "../Modal.css";
+import { Button } from "@chakra-ui/react";
 function CreateUserModal() {
   const { mutate: postCreateUser } = usePostCreateUser();
   const [name, setName] = useState("");
@@ -23,7 +24,9 @@ function CreateUserModal() {
 
   return (
     <div style={{ marginBottom: "10px" }}>
-      <button onClick={() => setIsModalOpen(true)}>社員の登録</button>
+      <Button colorScheme="blue" onClick={() => setIsModalOpen(true)}>
+        社員の登録
+      </Button>
       {isModalOpen && (
         <div className="modal">
           <div className="modal-content bg-white rounded-lg p-6 shadow-lg relative">
